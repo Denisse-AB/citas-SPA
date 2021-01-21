@@ -1,6 +1,6 @@
-# Appointments-SPA
+# Citas-SPA
 
-Aplicación de una página (SPA) utilizando Vue.js, Express.js y MYSQL.
+Aplicación de una página (SPA) para sacar citas utilizando Vue.js, Express.js y MYSQL.
 
 ## Descripción
 
