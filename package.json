@@ -1,0 +1,25 @@
+{
+  "name": "appointments_app",
+  "version": "1.0.0",
+  "description": "Appointments app Template",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js"
+  },
+  "author": "Denisse Abreu",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mysql": "^2.18.1",
+    "nodemailer": "^6.4.17",
+    "nodemailer-express-handlebars": "^4.0.0",
+    "nodemon": "^2.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
