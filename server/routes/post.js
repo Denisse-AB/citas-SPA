@@ -67,8 +67,7 @@ router.post('/', (req, res) => {
                 const mailInfo = (lang === 'en') ? en_mailInfo : es_mailInfo;
 
                 mailService.sendMail(mailInfo);
-                if (err) throw err
-                
+
                 res.status(201).json({ date: date, time: selected });
             })
         }
