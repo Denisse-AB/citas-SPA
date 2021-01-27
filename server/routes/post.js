@@ -23,9 +23,8 @@ router.post('/', (req, res) => {
     const selected = req.body.selected;
     const lang =req.body.lang;
     var created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const count = "SELECT time, date FROM appointments WHERE date ? AND time = ?" [date, selected];
-    const insert = "INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('?, ?, ?, ?, ?, ?')";
-    const values = [email, name, tel, date, selected, created_at];
+    const count = "SELECT time, date FROM appointments WHERE time = '"+selected+"' AND date = '"+date+"'";
+    const insert = "INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('" + email + "', '" + name + "', '" + tel + "', '" + date + "', '" + selected + "', '" + created_at + "')";
     // validations
     const validEmail = /\S+@\S+\.\S+/.test(email);
     const validName = /^[A-Za-z\s]+$/.test(name);
@@ -40,7 +39,7 @@ router.post('/', (req, res) => {
             res.status(400).send();
 
         } else {
-            con.query(insert, values, function (err, result) {
+            con.query(insert, function (err, result) {
                 if (err) throw err
 
                 const appointment = {
