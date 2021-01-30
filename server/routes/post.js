@@ -39,7 +39,7 @@ router.post('/', (req, res) => {
             res.status(400).send();
 
         } else {
-            con.query(insert, function (err, result) {
+            con.query(insert, async function (err) {
                 if (err) throw err
 
                 const appointment = {
@@ -66,7 +66,7 @@ router.post('/', (req, res) => {
 
                 const mailInfo = (lang === 'en') ? en_mailInfo : es_mailInfo;
 
-                mailService.sendMail(mailInfo
+                await mailService.sendMail(mailInfo
                 ).catch(err => {
                     console.log(err);
                 });
