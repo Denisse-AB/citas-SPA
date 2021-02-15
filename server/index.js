@@ -5,7 +5,7 @@ const cors = require("cors")
 const app = express()
 
 // middleware
-app.use(bodyParser.json()); // or express.json()
+app.use(bodyParser.json()); 
 app.use(cors());
 
 // redirect to route folder
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static(__dirname + '/public/'));
 
     // Handle SPA
-    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.js'));
+    app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
 
 const port = process.env.PORT || 3000
