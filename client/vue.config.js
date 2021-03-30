@@ -1,12 +1,4 @@
 const path = require('path')
-/*
- * const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
- *
- * configureWebpack: {
- *   plugins: [new BundleAnalyzerPlugin()]
- * },
- *
- */
 
 module.exports = {
   // Uncomment outputDir for production.

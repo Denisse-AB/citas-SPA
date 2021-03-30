@@ -39,7 +39,7 @@ router.post('/',
         if (err) throw err
 
         if (result.length >= 3) {
-            res.status(202).send();
+            res.sendStatus(202);
         } else {
             con.query(insert, async function (err) {
                 if (err) throw err
