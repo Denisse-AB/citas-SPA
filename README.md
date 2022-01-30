@@ -10,7 +10,7 @@ El dueño de esta aplicación administrará estas citas através de la base de d
 
 ## Requisitos
 
-Node.js v14.6.0 | MySQL database
+Node.js ^16.13.1 | MySQL database
 
 ## Instalación
 
@@ -24,9 +24,11 @@ cd client
 npm run start
 ```
 ---
-<p align="center">
-  <img src="client\src\assets\screenShot(1).png" width="450" alt="screenshot">
-  <img src="client\src\assets\screenShot(2).png" width="450" alt="screenshot">
-  <img src="client\src\assets\screenShot(3).png" width="450" alt="screenshot">
-  <img src="client\src\assets\screenShot(4).png" width="450" alt="screenshot">
-</p>
+**Demo** [here](https://denisse-ab.github.io/app-pages/).
+
+---
+## Donación
+Si te gustó este proyecto, regálame una taza de :coffee: :wink:
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?business=263QJ8D5YHR8E&no_recurring=0&item_name=I+believe+in+open+source%2C+but+a+little+donation+will+be+appreciated.+Thanks%21&currency_code=USD)
+
