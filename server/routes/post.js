@@ -32,18 +32,16 @@ router.post('/',
 
     const { email, name, tel, date, selected, lang } = req.body
     var created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    // const count = "SELECT time, date FROM appointments WHERE time = '"+selected+"' AND date = '"+date+"'";
-    // const insert = "INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('" + email + "', '" + name + "', '" + tel + "', '" + date + "', '" + selected + "', '" + created_at + "')";
+    const count = "SELECT time, date FROM appointments WHERE time = '"+selected+"' AND date = '"+date+"'";
+    const insert = "INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('" + email + "', '" + name + "', '" + tel + "', '" + date + "', '" + selected + "', '" + created_at + "')";
 
-        con.query("SELECT time, date FROM appointments WHERE time = '" + selected + "' AND date = '" + date + "'",
-        function (err, result) {
+    con.query(count, function (err, result) {
         if (err) throw err
 
         if (result.length >= 3) {
             res.sendStatus(202);
         } else {
-            con.query("INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('" + email + "', '" + name + "', '" + tel + "', '" + date + "', '" + selected + "', '" + created_at + "')",
-            async function (err) {
+            con.query(insert, async function (err) {
                 if (err) throw err
 
                 const appointment = {
