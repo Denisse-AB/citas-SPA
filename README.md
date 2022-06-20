@@ -12,17 +12,30 @@ El dueño de esta aplicación administrará estas citas através de la base de d
 
 Node.js ^16.13.1 | MySQL database
 
-## Instalación
+## Instalación Server
+---
+[Fork el repositorio](https://docs.github.com/es/get-started/quickstart/fork-a-repo).
 
-- Clone repository
+- Crea un nuevo folder en tu computadora
+- cd a tu nuevo folder
+- [Clone repository](https://docs.github.com/es/get-started/quickstart/fork-a-repo#cloning-your-forked-repository)
+- cd a citas-SPA
 
 ```javascript
-npm run install
-
+npm install
 npm run dev
+```
+
+## Instalación Vue
+
+```javascript
 cd client
+npm install
 npm run start
 ```
+
+En la raíz del proyecto renombra .env.example a .env y rellena las variables con tus datos.
+
 ---
 **Demo** [here](https://denisse-ab.github.io/app-pages/).
 

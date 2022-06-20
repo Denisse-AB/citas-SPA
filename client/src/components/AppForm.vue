@@ -169,9 +169,9 @@ export default {
       this.data = {}
 
       try {
+        const { email, name, date, tel, selected, lang } = this
         await PostService.insertPost(
-          this.email, this.name, this.date, this.tel, this.selected, this.lang
-
+          email, name, date, tel, selected, lang
         ).then(res => {
           if (res.status === 201) {
             this.email = ''

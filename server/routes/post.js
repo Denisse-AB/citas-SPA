@@ -24,16 +24,18 @@ router.post('/',
     body('date').notEmpty().isString(),
     body('selected').notEmpty().isString(),
     (req, res) => {
+    const { email, name, tel, date, selected, lang } = req.body;
 
-        const errors = validationResult(req)
-        if (!errors.isEmpty()) {
-            return res.sendStatus(400)
-        }
+    const errors = validationResult(req);
 
-    const { email, name, tel, date, selected, lang } = req.body
-    var created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
-    const count = "SELECT time, date FROM appointments WHERE time = '"+selected+"' AND date = '"+date+"'";
-    const insert = "INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('" + email + "', '" + name + "', '" + tel + "', '" + date + "', '" + selected + "', '" + created_at + "')";
+    if (!errors.isEmpty()) {
+        return res.sendStatus(400)
+    }
+
+    let created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
+    // SQL
+    const count = `SELECT time, date FROM appointments WHERE time = '${selected}' AND date = '${date}'`;
+    const insert = `INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('${email}', '${name}', '${tel}', '${date}', '${selected}', '${created_at}')`;
 
     con.query(count, function (err, result) {
         if (err) throw err
