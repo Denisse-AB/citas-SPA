@@ -1,23 +1,31 @@
-import Vue from 'vue'
+/* eslint-disable camelcase */
+import { createApp } from 'vue'
 import App from './App.vue'
-import { LayoutPlugin, NavbarPlugin, CardPlugin, FormSelectPlugin, OverlayPlugin } from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-import i18n from '@/plugins/i18n'
+import i18n from './i18n'
+import { defineRule, configure } from 'vee-validate'
+import { required, email, alpha_spaces, digits } from '@vee-validate/rules'
+import { localize, setLocale } from '@vee-validate/i18n'
+import es from '@vee-validate/i18n/dist/locale/es.json'
+import en from '@vee-validate/i18n/dist/locale/en.json'
 
-library.add(faCheckCircle)
+// tailwind
+import './index.css'
 
-Vue.use(LayoutPlugin)
-Vue.use(NavbarPlugin)
-Vue.use(CardPlugin)
-Vue.use(FormSelectPlugin)
-Vue.use(OverlayPlugin)
+// vee-validate rules
+defineRule('required', required)
+defineRule('email', email)
+defineRule('alpha_spaces', alpha_spaces)
+defineRule('digits', digits)
 
-Vue.config.productionTip = false
+configure({
+  validateOnInput: true,
+  generateMessage: localize({
+    es,
+    en
+  })
+})
 
-new Vue({
-  i18n,
-  render: h => h(App)
-}).$mount('#app')
+// Set initial locale
+setLocale('es')
+
+createApp(App).use(i18n).mount('#app')

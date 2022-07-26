@@ -1,0 +1,18 @@
+{
+  "lang": "en",
+  "message": "Welcome",
+  "home": "Home",
+  "title": "Boilerplate Appointments App using Vue.js, Node.js, and Express",
+  "name": "Name",
+  "tel": "Phone",
+  "date": "Select date",
+  "input": "Enter Your ",
+  "label": "Select Hour: ",
+  "submit": "Submit",
+  "thankyou": "Thankyou",
+  "check": "Check Your Email",
+  "day": "Your appointment was accepted for",
+  "time": "at",
+  "rejected":"Not available, choose a different time or day.",
+  "alert": "Something went wrong, try again!"
+}

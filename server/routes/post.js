@@ -32,10 +32,11 @@ router.post('/',
         return res.sendStatus(400)
     }
 
+    const date_format = date.split("T")[0];
     let created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
     // SQL
-    const count = `SELECT time, date FROM appointments WHERE time = '${selected}' AND date = '${date}'`;
-    const insert = `INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('${email}', '${name}', '${tel}', '${date}', '${selected}', '${created_at}')`;
+    const count = `SELECT time, date FROM appointments WHERE time = '${selected}' AND date = '${date_format}'`;
+    const insert = `INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('${email}', '${name}', '${tel}', '${date_format}', '${selected}', '${created_at}')`;
 
     con.query(count, function (err, result) {
         if (err) throw err
@@ -47,7 +48,7 @@ router.post('/',
                 if (err) throw err
 
                 const appointment = {
-                    date: date,
+                    date: date_format,
                     name: name,
                     time: selected
                 };
@@ -70,12 +71,12 @@ router.post('/',
 
                 const mailInfo = (lang === 'en') ? en_mailInfo : es_mailInfo;
 
-                await mailService.sendMail(mailInfo
-                ).catch(err => {
-                    console.log(err);
-                });
+                // await mailService.sendMail(mailInfo
+                // ).catch(err => {
+                //     console.log(err);
+                // });
 
-                res.status(201).json({ date: date, time: selected });
+                res.status(201).json({ date: date_format, time: selected });
             })
         }
     })

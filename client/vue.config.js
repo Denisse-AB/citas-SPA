@@ -1,13 +1,22 @@
-const path = require('path')
-
-module.exports = {
-  // Uncomment outputDir for production.
-  // outputDir: path.resolve(__dirname, '../server/public'),
+const { defineConfig } = require('@vue/cli-service')
+module.exports = defineConfig({
+  transpileDependencies: true,
   devServer: {
     proxy: {
       '/post': {
-            target: 'http://localhost:3000'
+        target: 'http://localhost:3000'
       }
     }
+  },
+  pluginOptions: {
+    i18n: {
+      locale: 'es',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableLegacy: false,
+      runtimeOnly: false,
+      compositionOnly: false,
+      fullInstall: true
+    }
   }
-}
+})
