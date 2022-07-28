@@ -1,65 +1,29 @@
-import Vue from 'vue'
-import VueI18n from 'vue-i18n'
-import es from 'vee-validate/dist/locale/es.json'
-import en from 'vee-validate/dist/locale/en.json'
+import { createI18n } from 'vue-i18n'
 
-Vue.use(VueI18n)
-
-const i18n = new VueI18n({
-  locale: 'es',
-  fallbackLocale: 'en',
-  messages: {
-    es: {
-      home: 'Inicio',
-      lang: 'Idioma',
-      welcomeMsg: 'Bienvenido',
-      title: 'Tutorial App de citas en Vue.js, Node.js y Express',
-      email: 'Ingresa tu correo electrónico',
-      name: 'Nombre',
-      nameHolder: 'Ingresa tu nombre completo',
-      tel: 'Ingresa tu número de teléfono',
-      calendar: 'es',
-      dateHolder: 'Escoja una fecha',
-      submit: 'Enviar',
-      thankyou: 'Gracias',
-      check: 'Verifica tu Email',
-      day: 'Tu cita fue aceptada para el día',
-      time: 'a las',
-      message: 'Turno agotado, escoja otra Hora o Día.',
-      alert: 'Favor de tratar de nuevo!',
-      fields: {
-        email: 'Correo electrónico',
-        name: 'nombre',
-        phone: 'teléfono'
-      },
-      validation: es.messages
-    },
-    en: {
-      home: 'Home',
-      lang: 'Lang',
-      welcomeMsg: 'Welcome',
-      title: 'Example Appointments app using Vue.js, Node.js and Express',
-      email: 'Enter Your Email',
-      name: 'Name',
-      nameHolder: 'Enter your full Name',
-      tel: 'Enter your Telephone Number',
-      calendar: 'en',
-      dateHolder: 'Choose a date',
-      submit: 'Submit',
-      thankyou: 'Thankyou',
-      check: 'Check Your Email',
-      day: 'Your appointment was accepted for',
-      time: 'at',
-      message: 'Not available, choose a different time or day.',
-      alert: 'Something went wrong, try again!',
-      fields: {
-        email: 'E-mail',
-        name: 'name',
-        phone: 'phone number'
-      },
-      validation: en.messages
+/**
+ * Load locale messages
+ *
+ * The loaded `JSON` locale messages is pre-compiled by `@intlify/vue-i18n-loader`, which is integrated into `vue-cli-plugin-i18n`.
+ * See: https://github.com/intlify/vue-i18n-loader#rocket-i18n-resource-pre-compilation
+ */
+function loadLocaleMessages () {
+  const locales = require.context('../locales', true, /[A-Za-z0-9-_,\s]+\.json$/i)
+  const messages = {}
+  locales.keys().forEach(key => {
+    const matched = key.match(/([A-Za-z0-9-_]+)\./i)
+    if (matched && matched.length > 1) {
+      const locale = matched[1]
+      messages[locale] = locales(key).default
     }
-  }
+  })
+  return messages
+}
+
+const i18n = createI18n({
+  legacy: false,
+  locale: process.env.VUE_APP_I18N_LOCALE || 'es',
+  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'en',
+  messages: loadLocaleMessages()
 })
 
 export default i18n

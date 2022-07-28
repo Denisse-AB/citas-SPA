@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const url = 'post/'
+const url = '/post'
 
 class PostService {
-  static async insertPost (email, name, date, tel, selected, lang) {
+  static async insertAppointment (name, email, tel, date, selected, lang) {
     const res = await axios.post(url, {
-      email, name, date, tel, selected, lang
+      name, email, tel, date, selected, lang
     })
     return res
   }

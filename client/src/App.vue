@@ -1,25 +1,21 @@
 <template>
-  <div id="app">
-    <nav-bar/>
+  <div class="flex min-h-screen flex-col justify-start">
+    <NavBar />
+    <CardLayout />
+    <AppFooter />
   </div>
 </template>
 
-<script>
-import NavBar from './components/NavBar.vue'
+<script setup>
+import CardLayout from './components/CardLayout'
+import NavBar from './components/NavBar'
+import AppFooter from './components/AppFooter.vue'
 
-export default {
-  name: 'App',
-  components: {
-    NavBar
-  }
-}
 </script>
 
-<style lang="scss">
+<style>
 #app {
-  @import url('https://fonts.googleapis.com/css2?family=Raleway:ital@1&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
-  font-family: 'Lato', sans-serif;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

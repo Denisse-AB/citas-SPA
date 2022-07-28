@@ -1,13 +1,13 @@
 require('dotenv').config();
 const express = require('express');
-const { body, validationResult } = require('express-validator');
+const { validationRules, validate } = require('../validation/validation');
 const mysql = require('mysql');
 const MailService = require("../MailService");
 const mailService = new MailService();
 
 const router = express.Router();
 
-// database conection
+// database connection
 var con = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -15,22 +15,8 @@ var con = mysql.createConnection({
     database: process.env.DB_DATABASE
 });
 
-//post
-router.post('/',
-    // Validation
-    body('email').isEmail().normalizeEmail(),
-    body('name').notEmpty().isString().trim().escape(),
-    body('tel').notEmpty().isNumeric().isLength({ max: 11 }),
-    body('date').notEmpty().isString(),
-    body('selected').notEmpty().isString(),
-    (req, res) => {
+router.post('/', validationRules(), validate, (req, res) => {
     const { email, name, tel, date, selected, lang } = req.body;
-
-    const errors = validationResult(req);
-
-    if (!errors.isEmpty()) {
-        return res.sendStatus(400)
-    }
 
     let created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
     // SQL
@@ -40,6 +26,8 @@ router.post('/',
     con.query(count, function (err, result) {
         if (err) throw err
 
+        // Tres citas por hora
+        // Three appointments per hour
         if (result.length >= 3) {
             res.sendStatus(202);
         } else {

@@ -1,41 +1,45 @@
 {
   "name": "client",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "private": true,
+  "author": {
+    "email": "info@codingpr.com",
+    "name": "Denisse Abreu"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.36",
-    "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/vue-fontawesome": "^2.0.6",
-    "axios": "^0.21.4",
-    "bootstrap-vue": "^2.21.2",
-    "core-js": "^3.20.1",
-    "sass": "^1.45.2",
-    "vee-validate": "^3.4.14",
-    "vue": "^2.6.14",
-    "vue-i18n": "^8.26.8"
+    "@headlessui/vue": "^1.6.7",
+    "@vee-validate/i18n": "^4.6.2",
+    "@vee-validate/rules": "^4.6.2",
+    "@vuepic/vue-datepicker": "^3.3.1",
+    "axios": "^0.27.2",
+    "core-js": "^3.8.3",
+    "vee-validate": "^4.6.2",
+    "vue": "^3.2.13",
+    "vue-i18n": "^9.1.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.15",
-    "@vue/cli-plugin-eslint": "^4.5.15",
-    "@vue/cli-service": "^4.5.15",
-    "@vue/eslint-config-standard": "^5.1.2",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@intlify/vue-i18n-loader": "^3.0.0",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "@vue/eslint-config-standard": "^6.1.0",
+    "autoprefixer": "^10.4.7",
+    "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^4.3.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "eslint-plugin-vue": "^6.2.2",
-    "sass-loader": "^8.0.2",
-    "vue-template-compiler": "^2.6.14"
-  },
-  "engines": {
-    "node": "^16.13.1"
+    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-vue": "^8.0.3",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.1.4",
+    "vue-cli-plugin-i18n": "~2.3.1"
   },
   "eslintConfig": {
     "root": true,
@@ -43,17 +47,18 @@
       "node": true
     },
     "extends": [
-      "plugin:vue/essential",
+      "plugin:vue/vue3-essential",
       "@vue/standard"
     ],
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser"
     },
     "rules": {}
   },
   "browserslist": [
     "> 1%",
     "last 2 versions",
-    "not dead"
+    "not dead",
+    "not ie 11"
   ]
 }

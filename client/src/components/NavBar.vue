@@ -1,51 +1,83 @@
 <template>
-  <div>
-      <b-navbar id="fixed" variant="light" class="shadow fixed-top " type="light">
-        <b-navbar-nav>
-          <b-nav-item href="/">{{ $t('home')}}</b-nav-item>
-        <!-- logo -->
-        </b-navbar-nav>
-            <b-navbar-brand class="mx-auto" href="/">
-              <img alt="Vue logo" src="../assets/logo.png">
-            </b-navbar-brand>
-        <!-- dropdown -->
-        <b-navbar-nav>
-          <b-nav-item-dropdown :text="$t('lang')" right>
-          <b-dropdown-item v-for="entry in languages" :key="entry.title" @click="changeLocale(entry.language)">{{entry.title}}</b-dropdown-item>
-        </b-nav-item-dropdown>
-        </b-navbar-nav>
-      </b-navbar>
-    <AppForm msg="Welcome" :lang="$t('calendar')"/>
-  </div>
+  <header class="shadow-lg items-center justify-between flex p-5">
+    <div>
+      <a class="text-lg" href="/">{{ t('home')}}</a>
+    </div>
+    <a href="/">
+      <img class="w-16 mx-auto" alt="Vue logo" src="../assets/logo.png">
+    </a>
+    <Menu
+      as="div"
+      class="relative text-left justify-end flex"
+    >
+      <div>
+        <MenuButton
+          class="inline-flex justify-center w-full rounded-md
+          shadow-sm px-4 py-1 bg-white text-sm font-medium
+          text-gray-font hover:bg-input-hover-bg focus:outline-none
+          focus:ring-offset-2 focus:ring-offset-gray-100"
+        >
+          Lang
+          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
+              <path fill="currentColor" d="M7,10L12,15L17,10H7Z" />
+          </svg>
+        </MenuButton>
+      </div>
+
+      <transition
+        enter-active-class="transition ease-out duration-100"
+        enter-from-class="transform opacity-0 scale-95"
+        enter-to-class="transform opacity-100 scale-100"
+        leave-active-class="transition ease-in duration-75"
+        leave-from-class="transform opacity-100 scale-100"
+        leave-to-class="transform opacity-0 scale-95"
+      >
+        <MenuItems
+          class="origin-top-right absolute right-0 mt-2 w-56
+          rounded-md shadow-lg bg-white ring-1 ring-black
+          ring-opacity-5 focus:outline-none"
+        >
+          <div class="py-1 justify-end">
+            <MenuItem
+              v-slot="{ active }"
+              v-for="entry in languages"
+              :key="entry.title"
+            >
+              <div>
+                <a type="button" @click="changeLocale(entry.language)" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">{{ entry.title }}</a>
+              </div>
+            </MenuItem>
+          </div>
+        </MenuItems>
+      </transition>
+    </Menu>
+  </header>
 </template>
 
-<script>
-import AppForm from '../components/AppForm.vue'
+<script setup>
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { setLocale } from '@vee-validate/i18n'
+import i18n from '@/plugins/i18n'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems
+} from '@headlessui/vue'
 
-export default {
-  name: 'App',
-  components: {
-    AppForm
-  },
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local'
+})
 
-  data () {
-    return {
-      languages: [
-        { language: 'en', title: 'English' },
-        { language: 'es', title: 'Español' }
-      ]
-    }
-  },
-  methods: {
-    changeLocale (locale) {
-      this.$i18n.locale = this.$i18n.locale === 'en' ? 'es' : 'en'
-    }
-  }
+const languages = ref([
+  { language: 'en', title: 'English' },
+  { language: 'es', title: 'Español' }
+])
+
+const changeLocale = (locale) => {
+  i18n.global.locale.value = locale
+  setLocale(locale)
 }
 </script>
-
-<style lang="scss">
-img {
-  height: 60px;
-}
-</style>

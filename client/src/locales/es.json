@@ -1,0 +1,18 @@
+{
+  "lang": "es",
+  "message": "Hola",
+  "home": "Inicio",
+  "title": "Boilerplate de App para sacar citas en Vue.js, Node.js y Express",
+  "name": "Nombre",
+  "tel": "Teléfono",
+  "date": "Escoje un día",
+  "input": "Inserta tu ",
+  "label": "Escoje Hora: ",
+  "submit": "Enviar",
+  "thankyou": "Gracias",
+  "check": "Verifica tu Email",
+  "day": "Tu cita fue aceptada para el día",
+  "time": "a las",
+  "rejected": "Turno agotado, escoja otra Hora o Día.",
+  "alert": "Favor de tratar de nuevo!"
+}
