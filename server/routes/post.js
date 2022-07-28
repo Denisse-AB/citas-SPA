@@ -1,13 +1,13 @@
 require('dotenv').config();
 const express = require('express');
-const { body, validationResult } = require('express-validator');
+const { validationRules, validate } = require('../validation/validation');
 const mysql = require('mysql');
 const MailService = require("../MailService");
 const mailService = new MailService();
 
 const router = express.Router();
 
-// database conection
+// database connection
 var con = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -15,33 +15,19 @@ var con = mysql.createConnection({
     database: process.env.DB_DATABASE
 });
 
-//post
-router.post('/',
-    // Validation
-    body('email').isEmail().normalizeEmail(),
-    body('name').notEmpty().isString().trim().escape(),
-    body('tel').notEmpty().isNumeric().isLength({ max: 11 }),
-    body('date').notEmpty(), // check type after fix
-    body('selected').notEmpty().isString(),
-    (req, res) => {
+router.post('/', validationRules(), validate, (req, res) => {
     const { email, name, tel, date, selected, lang } = req.body;
-    // TODO: DATE CONV
-    console.log(date)
-    const errors = validationResult(req);
 
-    if (!errors.isEmpty()) {
-        return res.sendStatus(400)
-    }
-
-    const date_format = date.split("T")[0];
     let created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
     // SQL
-    const count = `SELECT time, date FROM appointments WHERE time = '${selected}' AND date = '${date_format}'`;
-    const insert = `INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('${email}', '${name}', '${tel}', '${date_format}', '${selected}', '${created_at}')`;
+    const count = `SELECT time, date FROM appointments WHERE time = '${selected}' AND date = '${date}'`;
+    const insert = `INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('${email}', '${name}', '${tel}', '${date}', '${selected}', '${created_at}')`;
 
     con.query(count, function (err, result) {
         if (err) throw err
 
+        // Tres citas por hora
+        // Three appointments per hour
         if (result.length >= 3) {
             res.sendStatus(202);
         } else {
@@ -49,7 +35,7 @@ router.post('/',
                 if (err) throw err
 
                 const appointment = {
-                    date: date_format,
+                    date: date,
                     name: name,
                     time: selected
                 };
@@ -72,12 +58,12 @@ router.post('/',
 
                 const mailInfo = (lang === 'en') ? en_mailInfo : es_mailInfo;
 
-                // await mailService.sendMail(mailInfo
-                // ).catch(err => {
-                //     console.log(err);
-                // });
+                await mailService.sendMail(mailInfo
+                ).catch(err => {
+                    console.log(err);
+                });
 
-                res.status(201).json({ date: date_format, time: selected });
+                res.status(201).json({ date: date, time: selected });
             })
         }
     })
