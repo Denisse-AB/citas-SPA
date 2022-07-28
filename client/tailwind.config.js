@@ -7,10 +7,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'input-placeholder': '#b3b3b3',
+        'input-border': '#a1a1a1',
+        'input-hover': '#c7ebdb',
+        'input-hover-bg': '#f2f2f2',
         'vue-green': '#42b883',
-        'submit-button': '#2c3e50',
-        'gradient-stop': '#b4e4ce',
         'gray-font': '#374151'
       }
     },

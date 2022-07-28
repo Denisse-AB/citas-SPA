@@ -5,12 +5,12 @@
     >
       <div>
         <ListboxButton
-          class="w-full tablet:w-56 cursor-default rounded-lg
-          bg-white py-2 pl-3 pr-10 text-left shadow-md
-          focus:outline-none focus-visible:border-indigo-500
+          class="w-full tablet:w-56 border border-input-border cursor-default
+          bg-white py-2 pl-3 pr-10 text-left shadow-sm rounded-sm
+          focus:outline-none focus-visible:border-vue-green
           focus-visible:ring-2 focus-visible:ring-white
           focus-visible:ring-opacity-75 focus-visible:ring-offset-2
-          focus-visible:ring-offset-orange-300 sm:text-sm"
+          focus-visible:ring-offset-vue-green text-sm"
         >
           <span class="block truncate">{{ label + selected.text }}</span>
           <span
@@ -40,7 +40,7 @@
               <li
                 @click="handleChange(time.text)"
                 :class="[
-                  active ? 'bg-amber-100 text-amber-900' : 'text-gray-900',
+                  active ? 'bg-input-hover text-gray-font' : 'text-gray-font',
                   'relative cursor-default select-none py-2 pl-10 pr-9',
                 ]"
               >
@@ -53,7 +53,7 @@
                 >
                 <span
                   v-if="selected"
-                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600"
+                  class="absolute inset-y-0 left-0 flex items-center pl-3 text-vue-green"
                 >
                 </span>
               </li>

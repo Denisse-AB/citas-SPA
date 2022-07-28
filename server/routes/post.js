@@ -21,11 +21,12 @@ router.post('/',
     body('email').isEmail().normalizeEmail(),
     body('name').notEmpty().isString().trim().escape(),
     body('tel').notEmpty().isNumeric().isLength({ max: 11 }),
-    body('date').notEmpty().isString(),
+    body('date').notEmpty(), // check type after fix
     body('selected').notEmpty().isString(),
     (req, res) => {
     const { email, name, tel, date, selected, lang } = req.body;
-
+    // TODO: DATE CONV
+    console.log(date)
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {

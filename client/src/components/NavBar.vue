@@ -14,7 +14,7 @@
         <MenuButton
           class="inline-flex justify-center w-full rounded-md
           shadow-sm px-4 py-1 bg-white text-sm font-medium
-          text-gray-font hover:bg-gray-50 focus:outline-none
+          text-gray-font hover:bg-input-hover-bg focus:outline-none
           focus:ring-offset-2 focus:ring-offset-gray-100"
         >
           Lang
@@ -52,14 +52,13 @@
       </transition>
     </Menu>
   </header>
-  <!-- <AppForm msg="Welcome" :lang="t('calendar')"/> -->
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from '@vee-validate/i18n'
-import i18n from '@/i18n'
+import i18n from '@/plugins/i18n'
 import {
   Menu,
   MenuButton,

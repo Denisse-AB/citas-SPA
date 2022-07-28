@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import { createApp } from 'vue'
 import App from './App.vue'
-import i18n from './i18n'
+import i18n from './plugins/i18n'
 import { defineRule, configure } from 'vee-validate'
 import { required, email, alpha_spaces, digits } from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
