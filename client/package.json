@@ -13,7 +13,7 @@
     "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
   },
   "dependencies": {
-    "@headlessui/vue": "^1.6.5",
+    "@headlessui/vue": "^1.6.7",
     "@vee-validate/i18n": "^4.6.2",
     "@vee-validate/rules": "^4.6.2",
     "@vuepic/vue-datepicker": "^3.3.1",
