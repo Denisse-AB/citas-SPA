@@ -19,7 +19,7 @@
         type="tel"
         rules="required|digits:10"
       />
-      <div class="my-3 tablet:flex laptop:flex">
+      <div class="my-3 mobile:mx-3 tablet:flex laptop:flex">
         <!-- Datepicker config: https://vue3datepicker.com/ -->
         <Datepicker
           class="mt-1 mx-auto mobile:max-w-sm"
