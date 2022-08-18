@@ -1,3 +1,62 @@
+<script setup>
+import { ref, reactive } from 'vue'
+import { Form } from 'vee-validate'
+import { useI18n } from 'vue-i18n'
+import CardInput from './CardInput.vue'
+import SelectInput from './SelectInput.vue'
+import ThankYou from './ThankYou.vue'
+import Datepicker from '@vuepic/vue-datepicker'
+import PostService from '@/utils/PostService'
+import '@vuepic/vue-datepicker/dist/main.css'
+
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local'
+})
+
+const data = reactive({
+  date: '',
+  time: ''
+})
+
+const name = ref('')
+const email = ref('')
+const tel = ref('')
+const date = ref('')
+const selected = ref('')
+const rejected = ref(false)
+const disabled = ref(false)
+const responseOK = ref(false)
+
+const Submit = async (lang) => {
+  disabled.value = true
+  const formatDate = date.value ? date.value.toLocaleDateString() : ''
+
+  try {
+    const res = await PostService.insertAppointment(
+      name.value,
+      email.value,
+      tel.value,
+      formatDate,
+      selected.value,
+      lang
+    )
+    if (res.status === 201) {
+      responseOK.value = true
+      disabled.value = false
+      data.date = res.data.date
+      data.time = res.data.time
+    } else {
+      rejected.value = true
+      disabled.value = false
+    }
+  } catch (error) {
+    disabled.value = false
+    alert(t('alert'))
+  }
+}
+</script>
+
 <template>
   <div v-show="!responseOK" class="my-3 text-black">
     <Form @submit="Submit(t('lang'))">
@@ -66,64 +125,6 @@
   />
 </template>
 
-<script setup>
-import { ref, reactive } from 'vue'
-import { Form } from 'vee-validate'
-import { useI18n } from 'vue-i18n'
-import CardInput from './CardInput.vue'
-import SelectInput from './SelectInput.vue'
-import ThankYou from './ThankYou.vue'
-import Datepicker from '@vuepic/vue-datepicker'
-import PostService from '@/utils/PostService'
-import '@vuepic/vue-datepicker/dist/main.css'
-
-const { t } = useI18n({
-  inheritLocale: true,
-  useScope: 'local'
-})
-
-const data = reactive({
-  date: '',
-  time: ''
-})
-
-const name = ref('')
-const email = ref('')
-const tel = ref('')
-const date = ref('')
-const selected = ref('')
-const rejected = ref(false)
-const disabled = ref(false)
-const responseOK = ref(false)
-
-const Submit = async (lang) => {
-  disabled.value = true
-  const formatDate = date.value ? date.value.toLocaleDateString() : ''
-
-  try {
-    const res = await PostService.insertAppointment(
-      name.value,
-      email.value,
-      tel.value,
-      formatDate,
-      selected.value,
-      lang
-    )
-    if (res.status === 201) {
-      responseOK.value = true
-      disabled.value = false
-      data.date = res.data.date
-      data.time = res.data.time
-    } else {
-      rejected.value = true
-      disabled.value = false
-    }
-  } catch (error) {
-    disabled.value = false
-    alert(t('alert'))
-  }
-}
-</script>
 <style lang="css">
 /* date picker overwrite */
   .dp__theme_light {

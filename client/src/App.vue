@@ -1,3 +1,9 @@
+<script setup>
+import CardLayout from './components/CardLayout.vue'
+import NavBar from './components/NavBar.vue'
+import AppFooter from './components/AppFooter.vue'
+</script>
+
 <template>
   <div class="flex min-h-screen flex-col justify-start">
     <NavBar />
@@ -5,13 +11,6 @@
     <AppFooter />
   </div>
 </template>
-
-<script setup>
-import CardLayout from './components/CardLayout'
-import NavBar from './components/NavBar'
-import AppFooter from './components/AppFooter.vue'
-
-</script>
 
 <style>
 #app {

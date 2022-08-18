@@ -1,3 +1,19 @@
+<script setup>
+import { defineProps } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local'
+})
+
+defineProps({
+  responseOk: Boolean,
+  date: String,
+  time: String
+})
+</script>
+
 <template>
   <div v-show="responseOk" class="text-gray-font">
     <div>
@@ -19,18 +35,3 @@
     </div>
   </div>
 </template>
-<script setup>
-import { defineProps } from 'vue'
-import { useI18n } from 'vue-i18n'
-
-const { t } = useI18n({
-  inheritLocale: true,
-  useScope: 'local'
-})
-
-defineProps({
-  responseOk: Boolean,
-  date: String,
-  time: String
-})
-</script>

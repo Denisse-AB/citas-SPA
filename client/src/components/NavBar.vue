@@ -1,10 +1,38 @@
+<script setup>
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { setLocale } from '@vee-validate/i18n'
+import i18n from '@/plugins/i18n'
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems
+} from '@headlessui/vue'
+
+const { t } = useI18n({
+  inheritLocale: true,
+  useScope: 'local'
+})
+
+const languages = ref([
+  { language: 'en', title: 'English' },
+  { language: 'es', title: 'Español' }
+])
+
+const changeLocale = (locale) => {
+  i18n.global.locale.value = locale
+  setLocale(locale)
+}
+</script>
+
 <template>
   <header class="shadow-lg items-center justify-between flex p-5">
     <div>
       <a class="text-lg" href="/">{{ t('home')}}</a>
     </div>
     <a href="/">
-      <img class="w-16 mx-auto" alt="Vue logo" src="../assets/logo.png">
+      <img class="w-16 mx-auto" alt="Vue logo" src="../assets/logo.svg">
     </a>
     <Menu
       as="div"
@@ -53,31 +81,3 @@
     </Menu>
   </header>
 </template>
-
-<script setup>
-import { ref } from 'vue'
-import { useI18n } from 'vue-i18n'
-import { setLocale } from '@vee-validate/i18n'
-import i18n from '@/plugins/i18n'
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems
-} from '@headlessui/vue'
-
-const { t } = useI18n({
-  inheritLocale: true,
-  useScope: 'local'
-})
-
-const languages = ref([
-  { language: 'en', title: 'English' },
-  { language: 'es', title: 'Español' }
-])
-
-const changeLocale = (locale) => {
-  i18n.global.locale.value = locale
-  setLocale(locale)
-}
-</script>

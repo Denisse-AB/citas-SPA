@@ -1,3 +1,33 @@
+<script setup>
+import { ref, defineEmits, defineProps } from 'vue'
+import {
+  Listbox,
+  ListboxButton,
+  ListboxOptions,
+  ListboxOption
+} from '@headlessui/vue'
+
+defineProps({
+  label: String
+})
+
+const hour = [
+  { text: '' },
+  { text: '11:00 am' },
+  { text: '12:00 pm' },
+  { text: '1:00 pm' },
+  { text: '2:00 pm' },
+  { text: '3:00 pm' }
+]
+const selected = ref(hour[0])
+
+const emit = defineEmits(['customChange'])
+
+const handleChange = (time) => {
+  emit('customChange', time)
+}
+</script>
+
 <template>
   <div class="my-1 mx-auto">
     <Listbox
@@ -64,33 +94,3 @@
     </Listbox>
   </div>
 </template>
-
-<script setup>
-import { ref, defineEmits, defineProps } from 'vue'
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption
-} from '@headlessui/vue'
-
-defineProps({
-  label: String
-})
-
-const hour = [
-  { text: '' },
-  { text: '11:00 am' },
-  { text: '12:00 pm' },
-  { text: '1:00 pm' },
-  { text: '2:00 pm' },
-  { text: '3:00 pm' }
-]
-const selected = ref(hour[0])
-
-const emit = defineEmits(['customChange'])
-
-const handleChange = (time) => {
-  emit('customChange', time)
-}
-</script>

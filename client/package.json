@@ -1,64 +1,37 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "private": true,
   "author": {
     "email": "info@codingpr.com",
     "name": "Denisse Abreu"
   },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "i18n:report": "vue-cli-service i18n:report --src \"./src/**/*.?(js|vue)\" --locales \"./src/locales/**/*.json\""
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
-    "@vee-validate/i18n": "^4.6.2",
-    "@vee-validate/rules": "^4.6.2",
-    "@vuepic/vue-datepicker": "^3.3.1",
+    "@vee-validate/i18n": "^4.6.6",
+    "@vee-validate/rules": "^4.6.6",
+    "@vuepic/vue-datepicker": "^3.4.5",
     "axios": "^0.27.2",
-    "core-js": "^3.8.3",
-    "vee-validate": "^4.6.2",
-    "vue": "^3.2.13",
-    "vue-i18n": "^9.1.0"
+    "vee-validate": "^4.6.6",
+    "vue": "^3.2.37",
+    "vue-i18n": "^9.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.16",
-    "@babel/eslint-parser": "^7.12.16",
-    "@intlify/vue-i18n-loader": "^3.0.0",
-    "@vue/cli-plugin-babel": "~5.0.0",
-    "@vue/cli-plugin-eslint": "~5.0.0",
-    "@vue/cli-service": "~5.0.0",
-    "@vue/eslint-config-standard": "^6.1.0",
-    "autoprefixer": "^10.4.7",
-    "eslint": "^7.32.0",
-    "eslint-plugin-import": "^2.25.3",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-vue": "^8.0.3",
-    "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.4",
-    "vue-cli-plugin-i18n": "~2.3.1"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "@vue/standard"
-    ],
-    "parserOptions": {
-      "parser": "@babel/eslint-parser"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead",
-    "not ie 11"
-  ]
+    "@intlify/vite-plugin-vue-i18n": "^6.0.1",
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "@vue/eslint-config-prettier": "^7.0.0",
+    "autoprefixer": "^10.4.8",
+    "eslint": "^8.21.0",
+    "eslint-plugin-vue": "^9.3.0",
+    "postcss": "^8.4.16",
+    "prettier": "^2.7.1",
+    "tailwindcss": "^3.1.8",
+    "vite": "^3.0.4"
+  }
 }
