@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const { validationRules, validate } = require('../validation/validation');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 const MailService = require("../MailService");
 const mailService = new MailService();
 
@@ -20,10 +20,10 @@ router.post('/', validationRules(), validate, (req, res) => {
 
     let created_at = new Date().toISOString().slice(0, 19).replace('T', ' ');
     // SQL
-    const count = `SELECT time, date FROM appointments WHERE time = '${selected}' AND date = '${date}'`;
+    const count = 'SELECT time, date FROM appointments WHERE time = ? AND date = ?';
     const insert = `INSERT INTO appointments (email, name, tel, date, time, created_at) VALUES ('${email}', '${name}', '${tel}', '${date}', '${selected}', '${created_at}')`;
 
-    con.query(count, function (err, result) {
+    con.execute(count, [selected, date], function (err, result) {
         if (err) throw err
 
         // Tres citas por hora
