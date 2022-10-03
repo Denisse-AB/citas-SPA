@@ -3,12 +3,7 @@ import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { setLocale } from '@vee-validate/i18n'
 import i18n from '@/plugins/i18n'
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems
-} from '@headlessui/vue'
+import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 
 const { t } = useI18n({
   inheritLocale: true,
@@ -29,25 +24,19 @@ const changeLocale = (locale) => {
 <template>
   <header class="shadow-lg items-center justify-between flex p-5">
     <div>
-      <a class="text-lg" href="/">{{ t('home')}}</a>
+      <a class="text-lg" href="/">{{ t('home') }}</a>
     </div>
     <a href="/">
-      <img class="w-16 mx-auto" alt="Vue logo" src="../assets/logo.svg">
+      <img class="w-16 mx-auto" alt="Vue logo" src="../assets/logo.svg" />
     </a>
-    <Menu
-      as="div"
-      class="relative text-left justify-end flex"
-    >
+    <Menu as="div" class="relative text-left justify-end flex">
       <div>
         <MenuButton
-          class="inline-flex justify-center w-full rounded-md
-          shadow-sm px-4 py-1 bg-white text-sm font-medium
-          text-gray-font hover:bg-input-hover-bg focus:outline-none
-          focus:ring-offset-2 focus:ring-offset-gray-100"
+          class="inline-flex justify-center w-full rounded-md shadow-sm px-4 py-1 bg-white text-sm font-medium text-gray-font hover:bg-input-hover-bg focus:outline-none focus:ring-offset-2 focus:ring-offset-gray-100"
         >
           Lang
-          <svg style="width:24px;height:24px" viewBox="0 0 24 24">
-              <path fill="currentColor" d="M7,10L12,15L17,10H7Z" />
+          <svg style="width: 24px; height: 24px" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M7,10L12,15L17,10H7Z" />
           </svg>
         </MenuButton>
       </div>
@@ -61,18 +50,20 @@ const changeLocale = (locale) => {
         leave-to-class="transform opacity-0 scale-95"
       >
         <MenuItems
-          class="origin-top-right absolute right-0 mt-2 w-56
-          rounded-md shadow-lg bg-white ring-1 ring-black
-          ring-opacity-5 focus:outline-none"
+          class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
         >
           <div class="py-1 justify-end">
-            <MenuItem
-              v-slot="{ active }"
-              v-for="entry in languages"
-              :key="entry.title"
-            >
+            <MenuItem v-slot="{ active }" v-for="entry in languages" :key="entry.title">
               <div>
-                <a type="button" @click="changeLocale(entry.language)" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">{{ entry.title }}</a>
+                <a
+                  type="button"
+                  @click="changeLocale(entry.language)"
+                  :class="[
+                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
+                    'block px-4 py-2 text-sm'
+                  ]"
+                  >{{ entry.title }}</a
+                >
               </div>
             </MenuItem>
           </div>

@@ -1,11 +1,6 @@
 <script setup>
 import { ref, defineEmits, defineProps } from 'vue'
-import {
-  Listbox,
-  ListboxButton,
-  ListboxOptions,
-  ListboxOption
-} from '@headlessui/vue'
+import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 
 defineProps({
   label: String
@@ -30,23 +25,13 @@ const handleChange = (time) => {
 
 <template>
   <div class="my-1 mx-auto">
-    <Listbox
-      v-model="selected"
-    >
+    <Listbox v-model="selected">
       <div>
         <ListboxButton
-          class="w-full tablet:w-56 border border-input-border cursor-default
-          bg-white py-2 pl-3 pr-10 text-left shadow-sm rounded-sm
-          focus:outline-none focus-visible:border-vue-green
-          focus-visible:ring-2 focus-visible:ring-white
-          focus-visible:ring-opacity-75 focus-visible:ring-offset-2
-          focus-visible:ring-offset-vue-green text-sm"
+          class="w-full tablet:w-56 border border-input-border cursor-default bg-white py-2 pl-3 pr-10 text-left shadow-sm rounded-sm focus:outline-none focus-visible:border-vue-green focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-vue-green text-sm"
         >
           <span class="block truncate">{{ label + selected.text }}</span>
-          <span
-            class="pointer-events-none absolute inset-y-0
-            right-0 flex items-center pr-2"
-          >
+          <span class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
           </span>
         </ListboxButton>
 
@@ -56,9 +41,7 @@ const handleChange = (time) => {
           leave-to-class="opacity-0"
         >
           <ListboxOptions
-            class="absolute mt-1 max-h-60
-            rounded-md bg-white py-1 text-base shadow-lg
-            ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
+            class="absolute mt-1 max-h-60 rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm"
           >
             <ListboxOption
               v-slot="{ active, selected }"
@@ -71,16 +54,12 @@ const handleChange = (time) => {
                 @click="handleChange(time.text)"
                 :class="[
                   active ? 'bg-input-hover text-gray-font' : 'text-gray-font',
-                  'relative cursor-default select-none py-2 pl-10 pr-9',
+                  'relative cursor-default select-none py-2 pl-10 pr-9'
                 ]"
               >
-                <span
-                  :class="[
-                    selected ? 'font-medium' : 'font-normal',
-                    'block truncate',
-                  ]"
-                  >{{ time.text }}</span
-                >
+                <span :class="[selected ? 'font-medium' : 'font-normal', 'block truncate']">{{
+                  time.text
+                }}</span>
                 <span
                   v-if="selected"
                   class="absolute inset-y-0 left-0 flex items-center pl-3 text-vue-green"
