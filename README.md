@@ -47,10 +47,3 @@ En la raíz del proyecto renombra .env.example a .env y rellena las variables co
   <img src="screenshots\screenshot(1).png" width="450" alt="screenshot">
   <img src="screenshots\screenshot(2).png" width="450" alt="screenshot">
 </p>
-
----
-## Donación
-Si te gustó este proyecto, regálame una taza de :coffee: :wink:
-
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/donate?business=263QJ8D5YHR8E&no_recurring=0&item_name=I+believe+in+open+source%2C+but+a+little+donation+will+be+appreciated.+Thanks%21&currency_code=USD)
-
