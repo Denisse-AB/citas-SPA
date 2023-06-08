@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineEmits, defineProps } from 'vue'
+import { ref } from 'vue'
 import { Listbox, ListboxButton, ListboxOptions, ListboxOption } from '@headlessui/vue'
 
 defineProps({

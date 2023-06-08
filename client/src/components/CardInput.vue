@@ -1,6 +1,5 @@
 <script setup>
 import { Field } from 'vee-validate'
-import { defineProps, defineEmits } from 'vue'
 import { useI18n } from 'vue-i18n'
 
 const { t } = useI18n({
@@ -20,7 +19,7 @@ defineEmits(['update:modelValue'])
 
 <template>
   <div>
-    <label class="px-3" for="name">{{ name }}</label>
+    <label class="px-3">{{ name }}</label>
     <Field :name="name" :rules="rules" v-slot="{ field, errors }">
       <input
         :class="[
